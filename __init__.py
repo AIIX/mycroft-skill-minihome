@@ -48,7 +48,6 @@ class MiniHomePlatform(MycroftSkill):
             self.gui.register_handler('mycroft.gui.screen.close', 
                                       self.show_home_screen)
             self.add_event("mycroft.gui.user.interaction", self.delay_event)
-            self.add_event("recognizer_loop:record_begin", self.activate_plasmoid_event)
             
         except Exception:
             LOG.exception('In Xenon Platform Skill')
@@ -94,11 +93,7 @@ class MiniHomePlatform(MycroftSkill):
     def show_home_screen(self):
         """ Show Homescreen. """
         self.gui.show_page('blank.qml')
-        
-    def activate_plasmoid_event(self):
-        """ Expand plasmoid on wakeword """
-        self.gui.send_event('mycroft.gui.activate.plasmoid', {})
-  
+          
     def delay_event(self):
         time.sleep(self.delay_time)
   
